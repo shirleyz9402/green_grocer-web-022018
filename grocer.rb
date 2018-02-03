@@ -7,9 +7,6 @@ def consolidate_cart(cart)
       else 
         consolidated[name][:count] += 1
       end 
-      if name == item[name]
-        consolidated[name] << item[details]
-      end 
     end 
   end 
   consolidated
