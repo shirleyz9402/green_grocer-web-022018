@@ -14,7 +14,8 @@ end
 
 def apply_coupons(cart, coupons)
   coupons.each do |items|
-    if cart
+    if cart.keys.include?(items[:item]) == true && cart[(items[:item])][:count] >= items[:num]
+      
 end
 
 def apply_clearance(cart)
