@@ -26,7 +26,6 @@ def apply_coupons(cart, coupons)
         :clearance => cart[(items[:item])][:clearance],
         :count => (cart[(items[:item])][:count] - discount[(items[:item])][:count])/items[:num]
       }
-      
     end 
   end 
   cart.each do |name, details|
@@ -42,7 +41,12 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
-  # code here
+   cart.each do |name, details|
+     if details[:clearance] == true
+      details[:price] = details[:price] * 0.8
+    end 
+  end 
+  cart
 end
 
 def checkout(cart, coupons)
