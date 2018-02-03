@@ -13,17 +13,32 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
+ discount = {}
   coupons.each do |items|
     if cart.keys.include?(items[:item]) == true && cart[(items[:item])][:count] >= items[:num]
-      cart[(items[:item])][:count] = cart[(items[:item])][:count] % items[:num]
-      cart["#{(items[:item])} W/ COUPON"] = {
+      discount[(items[:item])] = {
         :price => items[:cost],
         :clearance => cart[(items[:item])][:clearance],
-        :count => 1
+        :count => (cart[(items[:item])][:count] % items[:num])
+        }
+      discount["#{(items[:item])} W/ COUPON"] = {
+        :price => items[:cost],
+        :clearance => cart[(items[:item])][:clearance],
+        :count => (cart[(items[:item])][:count] - discount[(items[:item])][:count])/items[:num]
       }
+      
     end 
   end 
-  cart 
+  cart.each do |name, details|
+      if discount.keys.include?(name) == false
+        discount[name] = {
+          :price => details[:price],
+          :clearance => details[:clearance],
+          :count => details[:count]
+        }
+      end 
+    end 
+  discount 
 end
 
 def apply_clearance(cart)
