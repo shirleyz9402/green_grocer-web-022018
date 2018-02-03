@@ -3,8 +3,7 @@ def consolidate_cart(cart)
   cart.each do |item|
     item.each do |name, details|
       if consolidated.keys.include?(name)
-        consolidated[name] = details.merge({:count => 1})
-      else 
+        consolidated[name] = {details.merge({:count => 1})}
         consolidated[name][:count] += 1
       end 
     end 
