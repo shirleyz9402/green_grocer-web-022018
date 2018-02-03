@@ -18,7 +18,8 @@ def apply_coupons(cart, coupons)
       cart[(items[:item])][:count] = cart[(items[:item]][:count] - items[:num]
       cart["#{(items[:item])} W/ COUPON"] = {
         :price => items[:cost]
-        :clearance => cart[]
+        :clearance => cart[(items[:item])][:clearance]
+        :count =>
       
 end
 
