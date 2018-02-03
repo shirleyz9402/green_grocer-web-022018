@@ -17,7 +17,7 @@ def apply_coupons(cart, coupons)
   coupons.each do |items|
     if cart.keys.include?(items[:item]) == true && cart[(items[:item])][:count] >= items[:num]
       discount[(items[:item])] = {
-        :price => items[:cost],
+        :price => cart[(items[:item])][:price],
         :clearance => cart[(items[:item])][:clearance],
         :count => (cart[(items[:item])][:count] % items[:num])
         }
